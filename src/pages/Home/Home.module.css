@@ -1,0 +1,49 @@
+.homeSection {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(49, 48, 48);
+}
+.homeTitle {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 30px;
+  color: rgb(255, 255, 255);
+}
+
+.homeList {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  margin-right: -30px;
+  margin-bottom: -30px;
+}
+.homeItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-basis: calc((100% - 30px * 5) / 5);
+  margin-right: 30px;
+  margin-bottom: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+.homeItem:hover,
+.homeItem:focus {
+  transform: scale(1.1);
+}
+
+.homeItemTitle {
+  font-size: 14px;
+  font-weight: 700;
+  color: rgb(228, 149, 52);
+  width: 140px;
+}
+
+.releaseDate {
+  font-size: 14px;
+  font-weight: 700;
+  color: rgb(228, 149, 52);
+}
