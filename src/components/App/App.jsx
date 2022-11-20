@@ -8,16 +8,18 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Cast } from 'pages/Cast/Cast';
 import { Reviews } from '../../pages/Reviews/Reviews';
 import { NotFound } from '../../pages/NotFound/NotFound';
+import { css } from 'styled-components';
+import s from './App.module.css';
 
 export const App = () => {
   return (
-    <Container>
-      <Header>
+    <section className={s.AppSection}>
+      <Container>
         <nav>
           <Link to="/">Home</Link>
           <Link to="/movies">Movies</Link>
         </nav>
-      </Header>
+      </Container>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="movies" element={<Movies />} />
@@ -29,6 +31,6 @@ export const App = () => {
         <Route path="*" element={<NotFound />} />
       </Routes>
       <ToastContainer />
-    </Container>
+    </section>
   );
 };
