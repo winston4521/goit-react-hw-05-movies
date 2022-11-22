@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import css from './Cast.module.css';
 
-export const Cast = () => {
+const Cast = () => {
   const [members, setMembers] = useState([]);
   const { movieId } = useParams();
 
@@ -50,3 +50,5 @@ export const Cast = () => {
     </div>
   );
 };
+
+export default Cast;

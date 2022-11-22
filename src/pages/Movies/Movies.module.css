@@ -7,6 +7,7 @@
   background-color: rgb(49, 48, 48);
 }
 .form {
+  margin-top: 60px;
   display: flex;
   align-items: center;
   width: 100%;
@@ -91,7 +92,7 @@
 .movieItemTitle {
   font-size: 14px;
   font-weight: 700;
-  color: rgba(246, 136, 2, 0.976);
+  color: rgb(246, 136, 2);
   width: 140px;
   text-align: center;
 }
@@ -99,6 +100,6 @@
 .release_date {
   font-size: 14px;
   font-weight: 700;
-  color: rgba(246, 136, 2, 0.976);
+  color: rgb(246, 136, 2);
   text-align: center;
 }

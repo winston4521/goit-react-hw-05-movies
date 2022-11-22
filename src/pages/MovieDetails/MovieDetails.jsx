@@ -1,12 +1,14 @@
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
 import { ApiMovieInfo } from '../../components/Api/Api';
 import { useEffect, useState } from 'react';
-import { Link } from 'components/App/App.styled';
+import { Link } from 'react-router-dom';
+import css from './MovieDetails.module.css';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
   const [movieInfo, setMovieInfo] = useState(null);
+  const location = useLocation();
 
   useEffect(() => {
     ApiMovieInfo(movieId).then(res => {
@@ -19,20 +21,32 @@ const MovieDetails = () => {
   }, [movieId]);
 
   return (
-    <div>
+    <div className={css.detailsSection}>
       {movieInfo && (
-        <div>
-          <Link to="/">Home</Link>
-          <h2>{movieInfo.title}</h2>
-          <p>Rating {movieInfo.vote_average}</p>
-          <h3>Overview</h3>
-          <p>{movieInfo.overview}</p>
-          <h3>Genres</h3>
-          {movieInfo.genres.map(gen => (
-            <p>{gen.name}</p>
-          ))}
-          <Link to="cast">Cast</Link>
-          <Link to="reviews">Reviews</Link>
+        <div className={css.sectionWrapper}>
+          <Link
+            className={css.HomeButton}
+            to={location.state?.from ?? '/movies'}
+          >
+            Back
+          </Link>
+          <h2 className={css.detailsTitle}>{movieInfo.title}</h2>
+          <p className={css.detailsRating}>Rating {movieInfo.vote_average}</p>
+          <h3 className={css.detailsOverview}>Overview</h3>
+          <p className={css.movieInfo}>{movieInfo.overview}</p>
+          <h3 className={css.movieGenresTitle}>Genres</h3>
+          <div className={css.movieGenresContainer}>
+            {movieInfo.genres.map(gen => (
+              <p className={css.movieGenres}>{gen.name}</p>
+            ))}
+          </div>
+
+          <Link className={css.DetailsNavigation} to="cast">
+            Cast
+          </Link>
+          <Link className={css.DetailsNavigation} to="reviews">
+            Reviews
+          </Link>
           <Outlet />
         </div>
       )}

@@ -36,7 +36,7 @@
 
   cursor: pointer;
   transition: all 0.3s ease-out;
-  background-color: rgba(246, 136, 2, 0.976);
+  background-color: rgb(246, 136, 2);
 }
 .cast__item:hover,
 .cast__item:focus {

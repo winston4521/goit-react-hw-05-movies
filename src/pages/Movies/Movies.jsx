@@ -2,27 +2,33 @@ import { ApiQuery } from '../../components/Api/Api';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation, useSearchParams } from 'react-router-dom';
 import css from './Movies.module.css';
 
-export const Movies = () => {
-  const [searchQuery, setSearchQuery] = useState('');
+const Movies = () => {
   const [movies, setMovies] = useState([]);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const location = useLocation();
+  const searchParam = searchParams.get('search') ?? '';
 
   const onSubmitHandler = e => {
     e.preventDefault();
-    if (searchQuery.trim() === '') {
+    if (searchParam.trim() === '') {
       return toast.warn('Input value can not be empty');
     }
 
-    ApiQuery(searchQuery).then(res => {
+    ApiQuery(searchParam).then(res => {
       const { data } = res;
       if (data.results.length === 0) {
-        return toast.warn(`No Movies found with that name ${searchQuery}`);
+        return toast.warn(`No Movies found with that name ${searchParam}`);
       }
       setMovies(data.results);
     });
     e.target.reset();
+  };
+
+  const onInputChange = value => {
+    setSearchParams(value !== '' ? { search: value } : {});
   };
 
   return (
@@ -32,11 +38,12 @@ export const Movies = () => {
 
         <input
           className={css.formInput}
-          onInput={e => setSearchQuery(e.currentTarget.value.toLowerCase())}
+          onInput={e => onInputChange(e.currentTarget.value.toLowerCase())}
           type="text"
           autoComplete="off"
           autoFocus
           placeholder="Search movies"
+          value={searchParam}
         />
       </form>
 
@@ -45,7 +52,7 @@ export const Movies = () => {
           <ul className={css.movieList}>
             {movies.map(({ id, title, poster_path, release_date }) => (
               <li className={css.movieItem} key={id}>
-                <NavLink to={`/movies/${id}`}>
+                <NavLink to={`/movies/${id}`} state={{ from: location }}>
                   <img
                     src={`https://image.tmdb.org/t/p/w300${poster_path}`}
                     alt={title}
@@ -61,7 +68,4 @@ export const Movies = () => {
   );
 };
 
-// (
-//   toast.warn(
-//     `Sorry we did not foujnd any movies with name ${searchQuery}`
-//   )
+export default Movies;

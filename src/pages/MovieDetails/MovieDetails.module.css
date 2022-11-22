@@ -1,0 +1,49 @@
+.sectionWrapper {
+  background-color: rgb(49, 48, 48);
+  color: #fff;
+  padding: 24px;
+  width: 100%;
+}
+.HomeButton {
+  margin-top: 60px;
+  margin-bottom: 20px;
+  padding: 8px 16px;
+  border-radius: 4px;
+  text-decoration: none;
+  color: #fff;
+  font-weight: 500;
+  background-color: rgb(246, 136, 2);
+}
+
+.DetailsNavigation {
+  padding: 8px 16px;
+  border-radius: 4px;
+  text-decoration: none;
+  color: #fff;
+  font-weight: 500;
+  background-color: rgb(246, 136, 2);
+}
+.detailsTitle {
+  margin-bottom: 10px;
+}
+.detailsRating {
+  margin-bottom: 10px;
+}
+.detailsOverview {
+  margin-bottom: 10px;
+}
+
+.movieInfo {
+  margin-bottom: 10px;
+}
+.movieGenresTitle {
+  margin-bottom: 10px;
+}
+.movieGenres {
+  display: flex;
+  margin-bottom: 10px;
+  margin-right: 10px;
+}
+.movieGenresContainer {
+  display: flex;
+}
