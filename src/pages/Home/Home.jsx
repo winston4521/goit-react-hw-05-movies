@@ -1,11 +1,10 @@
-import { NavLink, Outlet, useLocation } from 'react-router-dom';
+import { NavLink, Outlet } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { ApiTrend } from '../../components/Api/Api';
 import css from './Home.module.css';
 
 const Home = () => {
   const [topMovies, setTopMovies] = useState([]);
-
 
   useEffect(() => {
     const getTrandingMovies = async () => {
