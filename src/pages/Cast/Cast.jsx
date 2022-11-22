@@ -2,7 +2,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { ApiCast } from '../../components/Api/Api';
 import { useParams } from 'react-router-dom';
-import { toast } from 'react-toastify';
+
 import css from './Cast.module.css';
 
 const Cast = () => {
