@@ -1,4 +1,4 @@
-import { NavLink, Outlet } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { ApiTrend } from '../../components/Api/Api';
 import css from './Home.module.css';
@@ -44,7 +44,7 @@ const Home = () => {
         </ul>
       )}
 
-      {/* <Outlet /> */}
+   
     </div>
   );
 };
