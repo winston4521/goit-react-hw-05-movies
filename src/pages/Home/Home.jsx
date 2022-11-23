@@ -7,11 +7,15 @@ const Home = () => {
   const [topMovies, setTopMovies] = useState([]);
 
   useEffect(() => {
-    const getTrandingMovies = async () => {
-      const { data } = await ApiTrend();
-      setTopMovies(data.results);
-    };
-    getTrandingMovies();
+    try {
+      const getTrandingMovies = async () => {
+        const { data } = await ApiTrend();
+        setTopMovies(data.results);
+      };
+      getTrandingMovies();
+    } catch (error) {
+      console.log(error);
+    }
   }, []);
 
   return (
