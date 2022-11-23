@@ -6,6 +6,7 @@ export const Container = styled.div`
   margin: 0 auto;
   padding: 0 16px;
   background-color: rgb(246, 136, 2);
+  height: 100vh;
 `;
 
 export const Header = styled.header`

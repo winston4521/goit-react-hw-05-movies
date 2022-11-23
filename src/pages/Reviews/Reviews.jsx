@@ -22,8 +22,8 @@ const Reviews = () => {
     <div className={css.reviews__container}>
       {reviews.length > 0 ? (
         <ul className={css.Reviews__list}>
-          {reviews.map(({ author, content }) => (
-            <li className={css.Reviews__item}>
+          {reviews.map(({ id, author, content }) => (
+            <li key={id} className={css.Reviews__item}>
               <h3 className={css.Reviews__author}>{author}</h3>
               <p>{content}</p>
             </li>

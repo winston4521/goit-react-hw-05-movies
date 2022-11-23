@@ -1,5 +1,5 @@
 import { lazy, Suspense } from 'react';
-// import Home from 'pages/Home/Home';
+import Home from 'pages/Home/Home';
 // import MovieDetails from 'pages/MovieDetails/MovieDetails';
 // import { Movies } from '../../pages/Movies/Movies';
 import { Routes, Route } from 'react-router-dom';
@@ -11,7 +11,7 @@ import 'react-toastify/dist/ReactToastify.css';
 // import { Reviews } from '../../pages/Reviews/Reviews';
 // import { NotFound } from '../../pages/NotFound/NotFound';
 
-const Home = lazy(() => import('../../pages/Home/Home'));
+// const Home = lazy(() => import('../../pages/Home/Home'));
 const Movies = lazy(() => import('../../pages/Movies/Movies'));
 const MovieDetails = lazy(() =>
   import('../../pages/MovieDetails/MovieDetails')

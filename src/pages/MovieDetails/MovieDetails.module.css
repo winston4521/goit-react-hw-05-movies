@@ -13,15 +13,27 @@
   color: #fff;
   font-weight: 500;
   background-color: rgb(246, 136, 2);
+  transition: all 0.2s ease-in-out;
+}
+.HomeButton:hover,
+.HomeButton:focus {
+  background-color: rgb(227, 96, 15);
 }
 
 .DetailsNavigation {
   padding: 8px 16px;
   border-radius: 4px;
+  margin-right: 5px;
   text-decoration: none;
   color: #fff;
   font-weight: 500;
   background-color: rgb(246, 136, 2);
+  transition: all 0.2s ease-in-out;
+}
+
+.DetailsNavigation:hover,
+.DetailsNavigation:focus {
+  background-color: rgb(227, 96, 15);
 }
 .detailsTitle {
   margin-bottom: 10px;
