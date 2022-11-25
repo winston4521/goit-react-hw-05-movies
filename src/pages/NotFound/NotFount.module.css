@@ -1,7 +1,11 @@
 .NotFoundWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: #fff;
 }
 .NotFount {
+  font-weight: 900;
   font-size: 25px;
   margin-top: 60px;
   color: black;

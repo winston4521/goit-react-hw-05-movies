@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import css from './MovieDetails.module.css';
 
+
 const MovieDetails = () => {
   const { movieId } = useParams();
   const [movieInfo, setMovieInfo] = useState(null);
@@ -24,10 +25,7 @@ const MovieDetails = () => {
     <div className={css.detailsSection}>
       {movieInfo && (
         <div className={css.sectionWrapper}>
-          <Link
-            className={css.HomeButton}
-            to={location.state?.from ?? '/movies'}
-          >
+          <Link className={css.HomeButton} to={location.state?.from ?? '/'}>
             Back
           </Link>
           <img

@@ -1,11 +1,11 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { ApiTrend } from '../../components/Api/Api';
 import css from './Home.module.css';
 
 const Home = () => {
   const [topMovies, setTopMovies] = useState([]);
-
+  const location = useLocation();
   useEffect(() => {
     const getTrandingMovies = async () => {
       const { data } = await ApiTrend();
@@ -21,7 +21,11 @@ const Home = () => {
         <ul className={css.homeList}>
           {topMovies.map(({ title, poster_path, id, backdrop_path, name }) => (
             <li className={css.homeItem} key={id}>
-              <NavLink className={css.homeLink} to={`/movies/${id}`}>
+              <NavLink
+                className={css.homeLink}
+                to={`/movies/${id}`}
+                state={{ from: location }}
+              >
                 <img
                   src={
                     poster_path

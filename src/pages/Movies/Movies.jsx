@@ -1,30 +1,37 @@
 import { ApiQuery } from '../../components/Api/Api';
-import { useState } from 'react';
-import { toast } from 'react-toastify';
+import { useState, useEffect } from 'react';
 
 import { NavLink, useLocation, useSearchParams } from 'react-router-dom';
 import css from './Movies.module.css';
+import { toast } from 'react-toastify';
 
 const Movies = () => {
   const [movies, setMovies] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const location = useLocation();
   const searchParam = searchParams.get('search') ?? '';
+  const [queryEl, setQueryEl] = useState('');
+
+  useEffect(() => {
+    if (queryEl) {
+      async function fetchMovies() {
+        const { data } = await ApiQuery(queryEl);
+        if (data.results.length > 0) {
+          setMovies(data.results);
+        }
+        toast.warn(`Did not have any movies with name ${queryEl}`);
+      }
+
+      fetchMovies();
+    }
+  }, [queryEl]);
 
   const onSubmitHandler = e => {
     e.preventDefault();
-    if (searchParam.trim() === '') {
-      return toast.warn('Input value can not be empty');
+    if (searchParam === '') {
+      return alert(' Input value can not be empty');
     }
-
-    ApiQuery(searchParam).then(res => {
-      const { data } = res;
-      if (data.results.length === 0) {
-        return toast.warn(`No Movies found with that name ${searchParam}`);
-      }
-      setMovies(data.results);
-    });
-    e.target.reset();
+    setQueryEl(searchParam);
   };
 
   const onInputChange = value => {
