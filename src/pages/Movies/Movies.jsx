@@ -34,6 +34,7 @@ const Movies = () => {
     setSearchParams(value !== '' ? { search: value } : {});
   };
 
+ 
   return (
     <section className={css.formContainer}>
       <SearchForm onSubmitItem={onSubmitHandler} />
