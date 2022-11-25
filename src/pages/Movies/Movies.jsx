@@ -4,55 +4,39 @@ import { useState, useEffect } from 'react';
 import { NavLink, useLocation, useSearchParams } from 'react-router-dom';
 import css from './Movies.module.css';
 import { toast } from 'react-toastify';
+import SearchForm from 'components/SearchForm/SearchForm';
 
 const Movies = () => {
   const [movies, setMovies] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
-  const location = useLocation();
   const searchParam = searchParams.get('search') ?? '';
-  const [queryEl, setQueryEl] = useState('');
+  const location = useLocation();
 
   useEffect(() => {
-    if (queryEl) {
+    if (searchParam) {
       async function fetchMovies() {
-        const { data } = await ApiQuery(queryEl);
-        if (data.results.length > 0) {
-          setMovies(data.results);
+        const { data } = await ApiQuery(searchParam);
+        if (data.results.length === 0) {
+          return toast.warn(`Did not have any movies with name ${searchParam}`);
         }
-        toast.warn(`Did not have any movies with name ${queryEl}`);
+        setMovies(data.results);
       }
 
       fetchMovies();
     }
-  }, [queryEl]);
+  }, [searchParam]);
 
-  const onSubmitHandler = e => {
-    e.preventDefault();
-    if (searchParam === '') {
+  const onSubmitHandler = value => {
+    if (value === '') {
       return alert(' Input value can not be empty');
     }
-    setQueryEl(searchParam);
-  };
 
-  const onInputChange = value => {
     setSearchParams(value !== '' ? { search: value } : {});
   };
 
   return (
     <section className={css.formContainer}>
-      <form className={css.form} onSubmit={onSubmitHandler}>
-        <button className={css.formButton} type="submit"></button>
-
-        <input
-          className={css.formInput}
-          onInput={e => onInputChange(e.currentTarget.value.toLowerCase())}
-          type="text"
-          autoComplete="off"
-          autoFocus
-          placeholder="Search movies"
-          value={searchParam}
-        />
-      </form>
+      <SearchForm onSubmitItem={onSubmitHandler} />
 
       <div className={css.moviesSection}>
         {movies.length > 0 && (
