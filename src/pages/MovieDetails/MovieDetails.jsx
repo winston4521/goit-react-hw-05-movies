@@ -1,4 +1,4 @@
-import { useLocation, useParams, useNavigate } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
 import { ApiMovieInfo } from '../../components/Api/Api';
 import { useEffect, useState } from 'react';
@@ -9,7 +9,7 @@ const MovieDetails = () => {
   const { movieId } = useParams();
   const [movieInfo, setMovieInfo] = useState(null);
   const location = useLocation();
-  const history = useNavigate();
+  console.log(location);
   useEffect(() => {
     ApiMovieInfo(movieId).then(res => {
       const { data } = res;
@@ -19,19 +19,15 @@ const MovieDetails = () => {
       setMovieInfo(data);
     });
   }, [movieId]);
+  const backLinkHref = location.state?.from ?? '/';
 
   return (
     <div className={css.detailsSection}>
       {movieInfo && (
         <div className={css.sectionWrapper}>
-          <button
-            type="button"
-            key={movieInfo.id}
-            className={css.HomeButton}
-            onClick={() => history(-2)}
-          >
+          <Link className={css.HomeButton} to={backLinkHref}>
             Back
-          </button>
+          </Link>
           <img
             className={css.detailsImg}
             src={`https://image.tmdb.org/t/p/w300${movieInfo.poster_path}`}
@@ -49,13 +45,17 @@ const MovieDetails = () => {
             ))}
           </div>
 
-          <Link key={movieInfo.id} className={css.DetailsNavigation} to="cast">
+          <Link
+            className={css.DetailsNavigation}
+            to="cast"
+            state={{ from: backLinkHref }}
+          >
             Cast
           </Link>
           <Link
-            key={movieInfo.id}
             className={css.DetailsNavigation}
             to="reviews"
+            state={{ from: backLinkHref }}
           >
             Reviews
           </Link>

@@ -24,7 +24,7 @@ const Home = () => {
               <NavLink
                 className={css.homeLink}
                 to={`/movies/${id}`}
-                state={{ from: location }}
+                state={{ movies: location }}
               >
                 <img
                   src={

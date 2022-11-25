@@ -11,7 +11,6 @@ const Movies = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const searchParam = searchParams.get('search') ?? '';
   const location = useLocation();
-
   useEffect(() => {
     if (searchParam) {
       async function fetchMovies() {
@@ -34,7 +33,6 @@ const Movies = () => {
     setSearchParams(value !== '' ? { search: value } : {});
   };
 
- 
   return (
     <section className={css.formContainer}>
       <SearchForm onSubmitItem={onSubmitHandler} />
