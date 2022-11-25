@@ -11,7 +11,7 @@ const SearchForm = ({ onSubmitItem }) => {
       return toast.warn('input value can not be empty');
     }
     onSubmitItem(query);
-    // setQuery('');
+    setQuery('');
   };
 
   return (
